@@ -98,12 +98,13 @@ lws_genhash_destroy(struct lws_genhash_ctx *ctx, void *result)
 	return ret;
 }
 
-#if defined(LWS_HAVE_EVP_PKEY_new_raw_private_key)
+#if 0
 
 int
 lws_genhmac_init(struct lws_genhmac_ctx *ctx, enum lws_genhmac_types type,
 		 const uint8_t *key, size_t key_len)
 {
+	return -1;
 	ctx->ctx = EVP_MD_CTX_create();
 	if (!ctx->ctx)
 		return -1;
