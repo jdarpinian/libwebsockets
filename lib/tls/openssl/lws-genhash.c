@@ -27,6 +27,8 @@
 #include <private-lib-core.h>
 #include <openssl/obj_mac.h>
 #include <openssl/opensslv.h>
+#include <openssl/hmac.h>
+
 /*
  * Care: many openssl apis return 1 for success.  These are translated to the
  * lws convention of 0 for success.
