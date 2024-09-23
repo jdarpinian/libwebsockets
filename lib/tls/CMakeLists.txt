@@ -341,6 +341,9 @@ CHECK_FUNCTION_EXISTS(${VARIA}RSA_set0_key LWS_HAVE_RSA_SET0_KEY PARENT_SCOPE)
 CHECK_FUNCTION_EXISTS(${VARIA}X509_get_key_usage LWS_HAVE_X509_get_key_usage PARENT_SCOPE)
 CHECK_FUNCTION_EXISTS(${VARIA}SSL_CTX_EVP_PKEY_new_raw_private_key LWS_HAVE_SSL_CTX_EVP_PKEY_new_raw_private_key PARENT_SCOPE)
 CHECK_FUNCTION_EXISTS(${VARIA}SSL_CTX_get0_certificate LWS_HAVE_SSL_CTX_get0_certificate PARENT_SCOPE)
+# This check fails due to some bullshit that is impossible to debug because Cmake is the worst pile of shit imaginable.
+# We wouldn't care except this causes LWS to fail to get certificat expiration dates, which means it won't ever renew Let's Encrypt certs.
+set(LWS_HAVE_SSL_CTX_get0_certificate 1 CACHE INTERNAL PARENT_SCOPE FORCE)
 CHECK_FUNCTION_EXISTS(${VARIA}SSL_get0_alpn_selected LWS_HAVE_SSL_get0_alpn_selected PARENT_SCOPE)
 CHECK_FUNCTION_EXISTS(${VARIA}SSL_set_alpn_protos LWS_HAVE_SSL_set_alpn_protos PARENT_SCOPE)
 CHECK_FUNCTION_EXISTS(${VARIA}EVP_aes_128_cfb8 LWS_HAVE_EVP_aes_128_cfb8 PARENT_SCOPE)
