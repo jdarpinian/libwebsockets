@@ -1359,6 +1359,17 @@ pkt_add_hdrs:
 			/* listen on the same port as the vhost that triggered us */
 			ac->ci.port = 80;
 
+			/*
+			 * Name the temporary vhost after the domain being
+			 * validated. If another vhost already owns the port-80
+			 * listen socket, incoming requests only reach us via
+			 * exact Host-header match in lws_select_vhost();
+			 * unnamed ("default") vhosts never match and the ACME
+			 * server's validation request 404s on the other vhost.
+			 */
+			ac->ci.vhost_name =
+				vhd->pvop_active[LWS_TLS_REQ_ELEMENT_COMMON_NAME];
+
 			/* make ourselves protocols[0] for the new vhost */
 			ac->ci.protocols = chall_http01_protocols;
 
